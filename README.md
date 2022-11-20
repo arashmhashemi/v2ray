@@ -3,6 +3,9 @@
 ``` bash
 apt update && apt upgrade -y
 apt install curl socat -y
+ufw allow http
+ufw allow https
+ufw allow 1024:65535/tcp
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 ```
 

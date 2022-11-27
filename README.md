@@ -60,3 +60,23 @@ To set up a user account for your VPN service:
 11. Share the QR Code with users, or click the Copy button to copy the configuration link to share with users. Your users will need to input the configuration (most easily done by scanning the QR code from inside either of the Fair VPN or v2RayNG applications on their mobile phones).
 
 Congratulations! You have just created a VPN service with a user account that can access it.
+
+
+DNAT Tunneling all ports (replace IRAN_IP and EU_IP)
+``` bash
+apt-get update -y && apt-get upgrade -y
+
+sysctl net.ipv4.ip_forward=1
+iptables -t nat -A PREROUTING -p tcp --dport 22 -j DNAT --to-destination IRAN_IP
+iptables -t nat -A PREROUTING -j DNAT --to-destination EU_IP
+iptables -t nat -A POSTROUTING -j MASQUERADE
+```
+
+DNAT Tunneling specific ports (replace EU_IP and PORT)
+```bash
+sudo apt update
+
+sudo sysctl net.ipv4.ip_forward=1
+sudo iptables -t nat -A PREROUTING -p tcp --dport PORT -j DNAT --to-destination EU_IP:PORT
+sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+```

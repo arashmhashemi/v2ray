@@ -61,6 +61,17 @@ To set up a user account for your VPN service:
 
 Congratulations! You have just created a VPN service with a user account that can access it.
 
+Install BBR
+``` bash
+wget -N --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && sudo chmod +x bbr.sh &&  sudo bash bbr.sh
+```
+
+Create Cert
+``` bash
+sudo apt-get install certbot
+
+sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email arash@email.com -d arashvpn.com 
+```
 
 DNAT Tunneling all ports (replace IRAN_IP and EU_IP)
 ``` bash
